@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+rel="stylesheet"
+/>
+<link rel="icon" href="static/favicon.ico" type="image/x-icon" />
+
+<link rel="stylesheet" href="/static/style.css" />
+<link
+href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+rel="stylesheet"
+/>
+<link
+href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+rel="stylesheet"
+/>
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+rel="stylesheet"
+/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jarvis.AI</title>
+</head>
+<body>
+<div id="jarvis-intro-overlay">
+<div class="jarvis-intro-logo">
+<span class="jarvis-intro-text">Welcome to<br>Jarvis.<span class="ai-highlight">AI</span></span>
+</div>
+</div>
+
+<div class="main">
+<div class="side_bar">
+<div class="chat">
+<div class="two-logo">
+<div class="logo1">
+<svg width="60" height="60" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient id="jarvisGradient" cx="60" cy="60" r="60" gradientUnits="userSpaceOnUse">
+<stop offset="0%" stop-color="#805ad5"/>
+<stop offset="90%" stop-color="#23243a"/>
+<stop offset="100%" stop-color="#181825"/>
+</radialGradient>
+</defs>
+<circle cx="60" cy="60" r="54" fill="url(#jarvisGradient)" stroke="#805ad5" stroke-width="4"/>
+<circle cx="60" cy="60" r="36" fill="#181825" stroke="#805ad5" stroke-width="2"/>
+<ellipse cx="60" cy="60" rx="18" ry="8" fill="#805ad5" opacity="0.45"/>
+<circle cx="60" cy="60" r="18" fill="none" stroke="#805ad5" stroke-width="2"/>
+<text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="#fff"
+font-family="'Dancing Script', 'Inter', Arial, sans-serif" font-size="32" font-weight="bold">J
+</text>
+<text x="50%" y="72%" dominant-baseline="middle" text-anchor="middle" fill="#805ad5"
+font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="bold">AI
+</text>
+</svg>
+</div>
+<button class="logo2-open" id="toggleSidebar">
+<span class="material-symbols-outlined" id="sidebarIcon">arrow_circle_left</span>
+</button>
+</div>
+</div>
+<div class="newChat" id="newChatSection">
+<button id="newChatIconBtn" class="newChat-img-btn">
+<span class="material-symbols-outlined"> edit_document </span>
+</button>
+<div>
+<button id="newChatBtn" class="newChat_btn">
+New Chat
+</button>
+</div>
+</div>
+<div class="searchChat" id="searchChatSection">
+<button id="searchChatIconBtn" class="search-img-btn">
+<span class="material-symbols-outlined"> search </span>
+</button>
+<div>
+<button class="search_btn">Search Chat</button>
+</div>
+</div>
+<div class="previous-chats">
+<div class="prev-chat-txt"><h3>Recent Chats</h3></div>
+<div class="prev_chats">
+<ul id="chat-list">
+    <li class="sidebar-chat-item active" data-message="Getting Started">
+       <div class="chat-title">
+        Getting Started
+        <span class="chat-caption">How can I help you today?</span>
+    </div>
+        <button class="chat-menu-btn">
+            <span class="material-symbols-outlined">more_vert</span>
+        </button>
+        <div class="chat-menu-box">
+            <button class="rename-btn">Rename</button>
+            <button class="delete-btn">Delete</button>
+        </div>
+    </li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="center-ui">
+<div id="center-heading-wrapper">
+    <div class="center-icon-wrapper">
+        <svg class="center-icon" width="60" height="60" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="centerIconGradient" cx="60" cy="60" r="60" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#805ad5"/>
+                    <stop offset="90%" stop-color="#23243a"/>
+                    <stop offset="100%" stop-color="#181825"/>
+                </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" fill="url(#centerIconGradient)" stroke="#805ad5" stroke-width="4"/>
+            <circle cx="60" cy="60" r="36" fill="#181825" stroke="#805ad5" stroke-width="2"/>
+            <ellipse cx="60" cy="60" rx="18" ry="8" fill="#805ad5" opacity="0.45"/>
+            <circle cx="60" cy="60" r="18" fill="none" stroke="#805ad5" stroke-width="2"/>
+            <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" fill="#fff"
+                  font-family="'Dancing Script', 'Inter', Arial, sans-serif" font-size="32" font-weight="bold">J
+            </text>
+            <text x="50%" y="72%" dominant-baseline="middle" text-anchor="middle" fill="#805ad5"
+                  font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="bold">AI
+            </text>
+        </svg>
+    </div>
+<h2 id="initial-heading" class="center-heading animate-type">
+What are you working on?
+</h2>
+<p class="tagline">I'm here to help with your questions, coding, creative projects, and more.</p>
+</div>
+<div id="message-display" class="message-display"></div>
+<div class="center-input-wrap">
+<div class="attach-container">
+<button id="attach-btn" class="icon-btn">
+    <span class="material-symbols-outlined">attachment</span>
+</button>
+
+<div id="attach-menu" class="hidden custom-attach-menu">
+<div class="attach-option">
+<span class="material-symbols-outlined">add_photo_alternate</span>
+<label>
+Add Image
+<input type="file" accept="image/*" class="hidden" id="image-upload">
+</label>
+</div>
+<div class="attach-option">
+<span class="material-symbols-outlined">attach_file</span>
+<label>
+Add File
+<input type="file" class="hidden" id="file-upload" >
+</label>
+</div>
+</div>
+</div>
+
+<div class="input-area-with-previews">
+<div id="file-previews-container" class="file-previews-container"></div>
+<input type="text" id="chatInput" class="chat-input" placeholder="Send a message..."/>
+</div>
+<button id="micBtn" class="icon-btn">
+<span class="material-symbols-outlined"> mic </span>
+</button>
+<button id="sendBtn" class="send-btn">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+
+
+<div id="searchBoxOverlay" class="search-box-overlay">
+<div class="search-box">
+<div class="search-box-header">
+<input type="text" id="searchInput" placeholder="Search chats..." />
+<button id="closeSearchBox" class="close-btn">&times;</button>
+</div>
+<ul id="searchResults" class="search-results">
+</ul>
+</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+fetchChatsOnLoad();
+});
+
+
+async function fetchChatsOnLoad() {
+try {
+const res = await fetch("http://localhost:8000/api/chats");
+const chats = await res.json();
+
+
+chats.forEach(chat => {
+renderChat(chat.user_message, chat.ai_response);
+});
+} catch (err) {
+console.error("❌ Error loading chats:", err);
+}
+}
+
+
+function renderChat(userMsg, aiMsg) {
+const container = document.getElementById("message-display");
+
+
+const messageEl = document.createElement("div");
+messageEl.classList.add("chat-pair");
+
+
+messageEl.innerHTML = `
+<div class="user-message">
+<strong>You:</strong> ${userMsg}
+</div>
+<div class="ai-message">
+<strong>Jarvis:</strong> ${aiMsg}
+</div>
+<hr />
+`;
+
+
+container.appendChild(messageEl);
+}
+</script>
+
+
+<script src="/static/script.js"></script>
+</body>
+</html>
